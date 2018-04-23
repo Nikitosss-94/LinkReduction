@@ -1,4 +1,4 @@
-package ru.example.testwork.model;
+package ru.example.testwork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

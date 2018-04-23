@@ -1,4 +1,4 @@
-package ru.example.testwork.model;
+package ru.example.testwork.models;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,8 +10,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Links {
 
     private Long id;
-
-    private String RealURL;
 
     private String URL;
 
@@ -29,15 +27,6 @@ public class Links {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Column(name = "links_realurl", nullable = false)
-    public String getRealURL() {
-        return RealURL;
-    }
-
-    public void setRealURL(String realURL) {
-        RealURL = realURL;
     }
 
     @Column(name = "links_url", nullable = false)

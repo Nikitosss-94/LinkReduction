@@ -6,7 +6,6 @@ CREATE TABLE public."Links"
 (
   links_id integer NOT NULL,
   links_url character varying NOT NULL,
-  links_realurl character varying NOT NULL,
   CONSTRAINT "Links_pkey" PRIMARY KEY (links_id)
 )
 WITH (
