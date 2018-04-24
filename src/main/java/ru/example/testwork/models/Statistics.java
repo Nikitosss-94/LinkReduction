@@ -1,30 +1,37 @@
 package ru.example.testwork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+@Component
 @Entity
-@Table(name = "Statistics")
+@Table(name = "statistics")
 public class Statistics {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "stat_id", nullable = false)
     private Long id;
 
+    @Column(name = "stat_date", nullable = false)
+    @Temporal(value=TemporalType.TIMESTAMP)
     private Date date;
 
+    @Column(name = "stat_ip", nullable = false)
     private String ip;
 
+    @ManyToOne
+    @JoinColumn(name = "link_id")
     private Links link;
 
     public Statistics() {
     }
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "stat_id", unique = true, nullable = false)
     public Long getId() {
         return id;
     }
@@ -33,8 +40,6 @@ public class Statistics {
         this.id = id;
     }
 
-    @Column(name = "stat_date", nullable = false)
-    @Temporal(value=TemporalType.TIMESTAMP)
     public Date getDate() {
         return date;
     }
@@ -43,7 +48,6 @@ public class Statistics {
         this.date = date;
     }
 
-    @Column(name = "stat_ip", nullable = false)
     public String getIp() {
         return ip;
     }
@@ -52,9 +56,6 @@ public class Statistics {
         this.ip = ip;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
-    @JoinColumn(name = "links_id", referencedColumnName = "links_id")
-    @JsonBackReference
     public Links getLink() {
         return link;
     }

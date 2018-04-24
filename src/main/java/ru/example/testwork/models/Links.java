@@ -1,26 +1,28 @@
 package ru.example.testwork.models;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+@Component
 @Entity
-@Table(name = "Links")
+@Table(name = "links")
 public class Links {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "link_id", nullable = false)
     private Long id;
 
+    @Column(name = "link_url", nullable = false)
     private String URL;
-
-    private Set<Statistics> statistics;
 
     public Links() {
     }
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "links_id", unique = true, nullable = false)
     public Long getId() {
         return id;
     }
@@ -29,7 +31,6 @@ public class Links {
         this.id = id;
     }
 
-    @Column(name = "links_url", nullable = false)
     public String getURL() {
         return URL;
     }
@@ -38,12 +39,13 @@ public class Links {
         this.URL = URL;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Links", targetEntity = Statistics.class, cascade = CascadeType.ALL)
-    public Set<Statistics> getStatistics() {
-        return statistics;
-    }
-
-    public void setStatistics(Set<Statistics> statistics) {
-        this.statistics = statistics;
-    }
+//    private Set<Statistics> statistics;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Links", targetEntity = Statistics.class, cascade = CascadeType.ALL)
+//    public Set<Statistics> getStatistics() {
+//        return statistics;
+//    }
+//
+//    public void setStatistics(Set<Statistics> statistics) {
+//        this.statistics = statistics;
+//    }
 }
