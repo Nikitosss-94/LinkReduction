@@ -1,6 +1,0 @@
-ru\example\testwork\models\Statistics.class
-ru\example\testwork\services\LinkService.class
-ru\example\testwork\dao\StatisticsRepository.class
-ru\example\testwork\dao\LinksRepository.class
-ru\example\testwork\controllers\AppController.class
-ru\example\testwork\models\Links.class
