@@ -3,10 +3,12 @@ package ru.example.testwork.models;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+/**
+ *Модель таблицы Links базы LinksReductionDB
+ */
 @Component
 @Entity
 @Table(name = "links")
@@ -18,7 +20,7 @@ public class Links {
     private Long id;
 
     @Column(name = "link_url", nullable = false)
-    private String URL;
+    private String url;
 
     public Links() {
     }
@@ -31,21 +33,12 @@ public class Links {
         this.id = id;
     }
 
-    public String getURL() {
-        return URL;
+    public String getUrl() {
+        return url;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-//    private Set<Statistics> statistics;
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Links", targetEntity = Statistics.class, cascade = CascadeType.ALL)
-//    public Set<Statistics> getStatistics() {
-//        return statistics;
-//    }
-//
-//    public void setStatistics(Set<Statistics> statistics) {
-//        this.statistics = statistics;
-//    }
 }

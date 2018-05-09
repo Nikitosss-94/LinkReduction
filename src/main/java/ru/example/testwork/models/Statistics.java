@@ -8,6 +8,9 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+/**
+ *Модель таблицы Statistics базы LinksReductionDB
+ */
 @Component
 @Entity
 @Table(name = "statistics")
