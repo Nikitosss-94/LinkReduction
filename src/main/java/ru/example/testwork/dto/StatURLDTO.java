@@ -13,9 +13,9 @@ public class StatURLDTO {
 
     String url;
 
-    List<Statistics> statistics;
+    List<StatDTO> statistics;
 
-    public StatURLDTO(String realUrl, String url, List<Statistics> statistics, Long id) {
+    public StatURLDTO(String realUrl, String url, List<StatDTO> statistics, Long id) {
         this.realUrl = realUrl;
         this.url = url.replace("/allstat", "/") + id;
         this.statistics = statistics;
@@ -37,11 +37,11 @@ public class StatURLDTO {
         this.url = url;
     }
 
-    public List<Statistics> getStatistics() {
+    public List<StatDTO> getStatistics() {
         return statistics;
     }
 
-    public void setStatistics(List<Statistics> statistics) {
+    public void setStatistics(List<StatDTO> statistics) {
         this.statistics = statistics;
     }
 }

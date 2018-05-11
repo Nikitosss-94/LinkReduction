@@ -1,10 +1,8 @@
 package ru.example.testwork.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import ru.example.testwork.dto.AllURLDTO;
+import ru.example.testwork.dto.StatDTO;
 import ru.example.testwork.dto.StatURLDTO;
 import ru.example.testwork.models.Links;
 import ru.example.testwork.services.LinkService;
@@ -13,8 +11,6 @@ import ru.example.testwork.services.StatService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,17 +24,9 @@ public class AppController {
 
     private StatService statService;
 
-    @Autowired
     public AppController(LinkService linkService, StatService statService) {
         this.linkService = linkService;
         this.statService = statService;
-    }
-
-    @InitBinder()
-    public void dateValidator(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-        dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
     @RequestMapping(value = "/{id}")
@@ -62,28 +50,24 @@ public class AppController {
         return linkreduction + link.getId();
     }
 
-    @RequestMapping(value = "/stat", method = RequestMethod.GET)
-    public StatURLDTO stat(@RequestParam("id") Long id, HttpServletRequest request){
+    @RequestMapping(value = "/stat={id}", method = RequestMethod.GET)
+    public StatURLDTO stat(@PathVariable("id") Long id, HttpServletRequest request){
         Links link = linkService.getLink(id);
-        StatURLDTO stat = new StatURLDTO(link.getUrl(), request.getRequestURL().toString(), statService.filterStatistics(link), id);
-//        stat.setRealUrl(link.getUrl());
-//        stat.setUrl(request.getRequestURL().toString().replace("/allstat", "/") + id);
-//        stat.setStatistics(statService.filterStatistics(link));
+        StatURLDTO stat = new StatURLDTO(link.getUrl(),
+                request.getRequestURL().toString(),
+                statService.filterStatistics(link).stream()
+                        .map(st -> {
+                            StatDTO cur = new StatDTO(st.getIp(), st.getDate());
+                            return cur;
+                        })
+                        .collect(Collectors.toList()),
+                id);
         return stat;
     }
 
     @RequestMapping(value = "/allstat", method = RequestMethod.GET)
     public List<AllURLDTO> allstat(HttpServletRequest request){
         List<Links> links = linkService.getAll();
-//        List<AllURLDTO> allURLDTOList = links.stream()
-//                .map(link -> {
-//                    AllURLDTO current = new AllURLDTO(link.getUrl(),
-//                            request.getRequestURL().toString(),
-//                            statService.lastStatDate(link),
-//                            link.getId());
-//                    return current;
-//                })
-//                .collect(Collectors.toList());
         return links.stream()
                 .map(link -> {
                     AllURLDTO current = new AllURLDTO(link.getUrl(),

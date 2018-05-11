@@ -1,5 +1,6 @@
 package ru.example.testwork.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -11,12 +12,12 @@ public class AllURLDTO {
 
     String url;
 
-    Date lastDate;
+    String lastDate;
 
     public AllURLDTO(String realUrl, String url, Date lastDate, Long id) {
         this.realUrl = realUrl;
         this.url = url.replace("/allstat", "/") + id;
-        this.lastDate = lastDate;
+        this.lastDate = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(lastDate);
     }
 
     public String getRealUrl() {
@@ -35,11 +36,11 @@ public class AllURLDTO {
         this.url = url;
     }
 
-    public Date getLastDate() {
+    public String getLastDate() {
         return lastDate;
     }
 
-    public void setLastDate(Date lastDate) {
+    public void setLastDate(String lastDate) {
         this.lastDate = lastDate;
     }
 }

@@ -18,13 +18,9 @@ public class StatService {
 
     private StatisticsRepository statisticsRepository;
 
-    @Autowired
     public StatService(StatisticsRepository statisticsRepository)
     {
         this.statisticsRepository = statisticsRepository;
-    }
-
-    public StatService() {
     }
 
     public void addStat(Links link, String ip) {

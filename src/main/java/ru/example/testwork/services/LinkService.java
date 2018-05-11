@@ -15,12 +15,8 @@ public class LinkService {
 
     private LinksRepository linksRepository;
 
-    @Autowired
     public LinkService(LinksRepository linksRepository) {
         this.linksRepository = linksRepository;
-    }
-
-    public LinkService() {
     }
 
     public List<Links> getAll(){
