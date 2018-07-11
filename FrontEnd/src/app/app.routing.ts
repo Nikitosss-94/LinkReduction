@@ -5,11 +5,13 @@ import { AllStatComponent } from './all-stat/all-stat.component';
 import { StatComponent } from './stat/stat.component';
 import { LinkshortComponent } from './linkshort/linkshort.component';
 import { RedirectComponent } from './redirect/redirect.component';
+import { NotFoundComponent } from './not-found/not-found.component'; 
 
 export const Routing: Routes =[                                               
     {path: '', component: LinkshortComponent},                  
     {path: 'stat/:id', component: StatComponent},                   
     {path: 'allstat', component: AllStatComponent}, 
+    {path: 'notfound', component: NotFoundComponent},
     {path: ':id', component: RedirectComponent}
 ];
 

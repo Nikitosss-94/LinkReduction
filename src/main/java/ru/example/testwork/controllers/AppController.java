@@ -35,12 +35,11 @@ public class AppController {
     public RedirectDTO realUrl (@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Links link = linkService.getLink(id);
-        if (link == null) {
-            return null;
-        }
-        statService.addStat(link, request.getRemoteAddr());
         RedirectDTO redirectDTO = new RedirectDTO();
-        redirectDTO.setUrl(request.getScheme() + "://" + link.getUrl());
+        if (link != null) {
+            statService.addStat(link, request.getRemoteAddr());
+            redirectDTO.setUrl(request.getScheme() + "://" + link.getUrl());
+        }
         return redirectDTO;
     }
 

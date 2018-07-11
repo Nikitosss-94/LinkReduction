@@ -13,7 +13,8 @@ import { StatService } from "./services/stat.service";
 import { Stat } from "./class/stat"; 
 import { Allstat } from "./class/allstat";
 import { Newwindow } from "./class/newwindow";
-import { RedirectComponent } from './redirect/redirect.component'; 
+import { RedirectComponent } from './redirect/redirect.component';
+import { NotFoundComponent } from './not-found/not-found.component'; 
              
 
 @NgModule({
@@ -23,6 +24,7 @@ import { RedirectComponent } from './redirect/redirect.component';
         StatComponent,
         LinkshortComponent,
         RedirectComponent,
+        NotFoundComponent,
         ],
     imports: [
         BrowserAnimationsModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StatService } from 'app/services/stat.service';  
 
@@ -14,7 +14,9 @@ export class RedirectComponent {
                               
   constructor(private route: ActivatedRoute, private router: Router, private service: StatService) {
     this.service.redirect(route.snapshot.params['id']).subscribe((link) => {
-       window.location.href = link.url; 
+       if (link.url == null) 
+         this.router.navigate(["notfound/"]);
+       else window.location.href = link.url; 
     },(error) => {
       console.log(error);
     });  }
