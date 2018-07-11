@@ -1,0 +1,32 @@
+﻿<div class="main-container">
+     <div class="content-container">
+          <div class="content-area">
+	       <h3>Общая статистика</h3>
+	       <table>
+    		    <thead>
+     	            <tr>
+	  		 <th style='word-wrap: break-word'>Реальный URL</th>
+			 <th style='width:10%'></th>
+	  		 <th style='word-wrap: break-word'>Сокращенный URL</th>
+			 <th style='width:10%'></th>
+	  		 <th style='word-wrap: break-word'>Дата последнего перехода по ссылке</th>
+			 <th style='width:10%'></th>
+	  		 <th style='word-wrap: break-word'>Подробная статистика по ссылке</th>
+     		    </tr>  
+     		    </thead>
+    		    <tbody>
+     		    <tr *ngFor="let item of data, let i=index">
+          		 <td>{{item.realUrl}}</td>    
+			 <th></th>
+          	      	 <td>http://shortlink.ru/{{item.url}}</td>
+			 <th></th>
+          		 <td>{{item.lastDate}}</td>
+			 <th></th>
+          		 <td><button class="btn btn-primary" (click)="gotostat(item.url)">Подробнее</button></td>
+     		    </tr>
+     		    </tbody>
+	       </table>
+	  </div>
+     </div>
+</div>
+

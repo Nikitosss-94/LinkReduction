@@ -6,6 +6,7 @@ import ru.example.testwork.dao.StatisticsRepository;
 import ru.example.testwork.models.Links;
 import ru.example.testwork.models.Statistics;
 
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -38,9 +39,9 @@ public class StatService {
         return statisticsRepository.findStatisticsByLink(link);
     }
 
-    public Date lastStatDate(Links link) {
+    public String lastStatDate(Links link) {
         List<Statistics> list = statisticsRepository.findStatisticsByLink(link);
-        Statistics statistic = list.stream().max(Comparator.comparing(Statistics::getDate)).get();
-        return statistic.getDate();
+        Statistics statistic = list.size() == 0 ? null : list.stream().max(Comparator.comparing(Statistics::getDate)).get();
+        return statistic == null ? "Не использовался" : new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(statistic.getDate());
     }
 }

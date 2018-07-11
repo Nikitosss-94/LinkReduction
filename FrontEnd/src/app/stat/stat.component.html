@@ -1,0 +1,31 @@
+﻿<div class="main-container">
+     <div class="content-container">
+          <div class="content-area">
+	       <h3>Статистика по ссылке</h3>
+	       <h5>Реальный URL = <a href="http://{{link}}" target="_blank"> {{link}} </a></h5> 
+	       <h5>Сокращенный URL = <a href = "/{{params}}" target="_blank"> {{shortLink}} </a></h5>
+	       <br/>  	        
+	       <table>
+    		    <thead>
+     	            <tr>
+	  		 <th style='word-wrap: break-word'>№</th>
+			 <th style='width:10%'></th>
+	  		 <th style='word-wrap: break-word'>IP Адрес</th>
+			 <th style='width:10%'></th>
+	  		 <th style='word-wrap: break-word'>Дата перехода по ссылке</th>        
+     		    </tr>  
+     		    </thead>
+    		    <tbody>
+     		    <tr *ngFor="let item of stat, let i=index">
+          		 <td>{{i+1}}</td>    
+			 <th></th>
+          	      	 <td>{{item.ip}}</td>
+			 <th></th>
+          		 <td>{{item.date}}</td>                                                           
+     		    </tr>
+     		    </tbody>
+	       </table>
+  	  
+          </div>
+     </div>
+</div>

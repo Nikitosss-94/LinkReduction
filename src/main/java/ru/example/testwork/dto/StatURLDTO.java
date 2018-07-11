@@ -11,13 +11,13 @@ public class StatURLDTO {
 
     String realUrl;
 
-    String url;
+    Long id;
 
     List<StatDTO> statistics;
 
-    public StatURLDTO(String realUrl, String url, List<StatDTO> statistics, Long id) {
+    public StatURLDTO(String realUrl, List<StatDTO> statistics, Long id) {
         this.realUrl = realUrl;
-        this.url = url.replace("/allstat", "/") + id;
+        this.id = id;
         this.statistics = statistics;
     }
 
@@ -29,12 +29,12 @@ public class StatURLDTO {
         this.realUrl = realUrl;
     }
 
-    public String getUrl() {
-        return url;
+    public Long getUrl() {
+        return id;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(Long id) {
+        this.id = id;
     }
 
     public List<StatDTO> getStatistics() {

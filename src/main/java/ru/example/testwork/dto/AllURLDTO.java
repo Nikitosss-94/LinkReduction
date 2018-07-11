@@ -10,14 +10,14 @@ public class AllURLDTO {
 
     String realUrl;
 
-    String url;
+    Long id;
 
     String lastDate;
 
-    public AllURLDTO(String realUrl, String url, Date lastDate, Long id) {
+    public AllURLDTO(String realUrl, String lastDate, Long id) {
         this.realUrl = realUrl;
-        this.url = url.replace("/allstat", "/") + id;
-        this.lastDate = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(lastDate);
+        this.id = id;
+        this.lastDate = lastDate;
     }
 
     public String getRealUrl() {
@@ -28,12 +28,12 @@ public class AllURLDTO {
         this.realUrl = realUrl;
     }
 
-    public String getUrl() {
-        return url;
+    public Long getUrl() {
+        return id;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(Long id) {
+        this.id = id;
     }
 
     public String getLastDate() {

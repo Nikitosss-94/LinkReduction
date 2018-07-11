@@ -1,0 +1,41 @@
+﻿<div class="main-container">
+     <div class="content-container">
+          <div class="content-area">
+	       <form class="form-horizontal">
+     		    <section class="form-block">                  
+          		 <div class="form-group">
+               		      <label for="1">Длинная ссылка</label>
+               	              <input type="url" id="1" placeholder="Введите ссылку" size="45" name="link" minlength="40" [(ngModel)]="link" #linkModel="ngModel" required>
+                         </div>
+                         <div class="form-group">
+               		      <label for="2">Примечание</label>
+               		      <input type="text" id="2" placeholder="Введите примечание" size="45" name="note" [(ngModel)]="note">
+          		 </div>                                                                                                                     
+          		 <button [disabled]="!linkModel.valid" type="submit" class="btn btn-primary" (click)="onProcess()">Сократить</button>
+     		    </section>
+	       </form>                        	                                                                                                          
+	       <button class="btn btn-primary" routerLink="allstat">Общая статистика</button>
+	       <p>Сокращенные ссылки</p>    	        
+	       <table>
+    		    <thead>
+     	            <tr>
+	  		 <th style='word-wrap: break-word'>Короткая ссылка</th>
+			 <th style='width:10%'></th>
+	  		 <th style='word-wrap: break-word'>реальная ссылка</th>
+			 <th style='width:10%'></th>
+	  		 <th style='word-wrap: break-word'>Примечание</th>        
+     		    </tr>  
+     		    </thead>
+    		    <tbody>
+     		    <tr *ngFor="let item of data, let i=index">
+          		 <td><a href = "/{{id}}" target="_blank">{{item.shortLink}}</a></td>    
+			 <th></th>
+          	      	 <td>{{item.link}}</td>
+			 <th></th>
+          		 <td>{{item.note}}</td>                                                           
+     		    </tr>
+     		    </tbody>
+	       </table> 
+          </div>
+     </div>
+</div>
